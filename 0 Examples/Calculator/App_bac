@@ -1,0 +1,125 @@
+fun main()
+{
+
+    var islemler = "10 + 10 + 10"
+    var temp: String = ""
+    var number1: Double? = null
+    var number2: Double? = null
+    var islem: String? = null
+    var islemDevam: Boolean = false;
+    
+    disDongu@ for(i in 0..islemler.length-1)
+    {
+
+        var harf: String = islemler[i].toString()
+        
+        if(i == islemler.length -1 && harf.toDoubleOrNull() == null)
+        {
+            println("son index işlem hatası")
+            break@disDongu
+        }
+        
+        
+        if(harf.toDoubleOrNull() != null)
+        {
+            temp+=harf
+            if(islemler.length-1 == i)
+            {
+
+            }else
+        }else
+        {
+            if(i == 0)
+            {
+                println("0. indis işlem hatası")
+                break@disDongu
+            }
+
+            if(temp.isNotEmpty())
+            {
+                if(number1 == null)
+                {
+                    number1 = temp.toDouble()
+                }else
+                {
+                    number2 = temp.toDouble()
+                }
+
+                temp = ""
+            
+
+            }else
+            {
+                
+                when(harf)
+                {
+                    " " -> continue@disDongu
+                    "+", "-", "/", "*" -> islem = harf
+
+                    else -> 
+                    {
+                        println("karakter hatası indis: ${i}")
+                        break@disDongu
+                    }
+                }
+                
+            }
+
+
+            
+
+
+
+        }
+
+
+
+
+
+        
+        if(number1 != null && number2 != null && islem != null)
+        {
+            println("Evet, işleme gitmeye hazırdır")
+            println("${number1} ${islem} ${number2}")
+            number1 = islemSonucu(number1, number2, islem)
+            println(number1)
+            number2 = null
+            islem = null
+      
+          
+            
+        }
+
+        
+        
+        
+        
+
+        
+        
+
+    }
+}
+
+
+
+fun islemSonucu(number1: Double, number2: Double, islem:String): Double
+{
+
+    var sonuc: Double = 0.0
+    
+    when(islem){
+
+        "+" -> sonuc = number1 + number2 
+        "-" -> sonuc = number1 - number2
+        "/" -> sonuc = number1 / number2
+        "*" -> sonuc = number1 * number2
+        else -> sonuc = 0.0
+    }
+
+    return sonuc
+
+
+
+
+}

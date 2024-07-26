@@ -1,0 +1,137 @@
+fun main()
+{
+    var islemler: String = "3+4+5+50-300*4"
+    var islem: String? = null
+    var number1: Double? = null
+    var number2: Double? = null
+    var temp: String = ""
+    var harf: String? = null
+    //İşleme devam edip, edilmeyeceğini kontrol eden değişken
+    var islemDevam: Boolean = false
+
+    //hata kontrolleri
+    islemDevam = IndisCheck(islemler[0].toString()) // ilk indis sayı değil mi?
+    islemDevam = IndisCheck(islemler[islemler.length-1].toString()) // son indis sayı değil mi?
+
+    if(islemDevam)
+    {
+        for(i in 0..islemler.length-1)
+        {
+            harf = islemler[i].toString();
+            
+            if(harf.toDoubleOrNull() !=null)
+            {
+                temp+=harf
+                if(i == islemler.length-1)
+                {
+                    number2 = temp.toDouble()
+                    if(number1 != null && number2 != null && islem != null)
+                    {
+                        println("Evet, işleme gitmeye hazırdır")
+                        println("${number1} ${islem} ${number2}")
+                        number1 = islemSonucu(number1, number2, islem)
+                        println(number1)
+                        number2 = null
+                        islem = null
+                  
+                    }else{
+
+                        continue
+                    }
+                    
+                }
+            }else
+            {
+                if(temp.isNotEmpty())
+                {
+                    if(number1 == null)
+                    {
+                        number1 = temp.toDouble()
+                    }else
+                    {
+                        if(islem != null)
+                        {
+                            number2 = temp.toDouble()
+                        }else
+                        {
+                            println("işlem hatası, hata kodu: 00x00")
+                            break;
+                        }
+                        if(number1 != null && number2 != null && islem != null)
+                        {
+                            println("Evet, işleme gitmeye hazırdır")
+                            println("${number1} ${islem} ${number2}")
+                            number1 = islemSonucu(number1, number2, islem)
+                            println(number1)
+                            number2 = null
+                            islem = null
+                      
+                        }
+                        
+                    }
+                    temp = ""
+                
+            
+                    when(harf)
+                    {
+                        " " -> continue
+                        "+", "-", "/", "*" -> islem = harf
+                        else -> {println("işlem hatası ->"); break}
+                    }
+                }
+
+                
+            }
+
+           
+
+        }
+
+        
+
+        
+    }
+
+   
+    
+
+
+
+
+}
+
+
+fun IndisCheck(lastIndis:String):Boolean
+{
+    if(lastIndis.toDoubleOrNull() == null)
+    {
+        return false
+        println("indis hatalı")
+    }else
+    {
+        println("indis hatalı değil")
+        return true
+    }
+}
+
+fun islemSonucu(number1: Double, number2: Double, islem:String): Double
+{
+
+    var sonuc: Double = 0.0
+    
+    when(islem){
+
+        "+" -> sonuc = number1 + number2 
+        "-" -> sonuc = number1 - number2
+        "/" -> sonuc = number1 / number2
+        "*" -> sonuc = number1 * number2
+        else -> sonuc = 0.0
+    }
+
+    return sonuc
+
+
+
+
+}
+

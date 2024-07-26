@@ -1,0 +1,14 @@
+apply plugin: 'kotlin'
+
+dependencies {
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+task compileKotlin(type: KotlinCompile) {
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+  sourceSets {
+    main.kotlin.srcDirs += ["src/main/kotlin"]
+  }
+}
