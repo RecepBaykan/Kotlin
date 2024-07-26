@@ -8,7 +8,7 @@ fun main()
 
     */
 
-    var durum1Child = DurumChild("Recep")
+    var durum1Child = DurumChild("Super")
     durum1Child.info()
 
    // ------------------------------------------------------------------------------//
